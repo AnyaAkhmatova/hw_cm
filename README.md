@@ -67,7 +67,7 @@ wandb.login()
 !python3 test.py -c ./test/config.json -r ./final_model/model_best.pth
 ```
 
-Комментарий: обучение запускалось в kaggle, инференс - в google colab.
+Комментарий: обучение запускалось в kaggle, тестирование - в google colab.
 
 ____
 
