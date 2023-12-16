@@ -1,0 +1,55 @@
+{
+  "name": "exp3_hints_no_abs_no_2021_style",
+  "n_gpu": 1,
+  "data": {
+    "path_to_kaggle_dataset": "/kaggle/input/asvpoof-2019-dataset/", 
+    "splits": ["train", "dev", "eval"], 
+    "batch_sizes": [32, 32, 32]
+  },
+  "arch": {
+    "type": "RawNet2",
+    "args": {
+      "sinc_out_channels": 128, 
+      "sinc_kernel_size": 129, 
+      "pool_kernel_size": 3, 
+      "resblock1_out_channels": 128,
+      "resblock2_out_channels": 512,
+      "resblock_kernel_size": 3,
+      "gru_hidden_size": 1024,
+      "fc_hidden_size": 1024, 
+      "sinc_type": "mel",
+      "sinc_abs": false,
+      "base_sinc_conv": true,
+      "min_low_hz": 50, 
+      "min_band_hz": 50,
+      "gru_bn_lr": true,
+      "gru_num_layers": 3, 
+      "gru_dropout": 0.1, 
+      "gru_bid": true
+    }
+  },
+  "optimizer": {
+    "type": "Adam",
+    "args": {
+      "lr": 1e-4,
+      "weight_decay": 1e-4
+    }
+  },
+  "loss": {
+    "type": "CrossEntropy",
+    "args": {
+      "weight": [1.0, 9.0]
+    }
+  },
+  "trainer": {
+    "epochs": 25,
+    "save_dir": "saved/",
+    "save_period": 5,
+    "verbosity": 2,
+    "monitor": "min dev_loss",
+    "early_stop": 20,
+    "visualize": "wandb",
+    "wandb_project": "cm_project",
+    "grad_norm_clip": null
+  }
+}
